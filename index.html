@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Shah - AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            --bg-card: #141829;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --border: rgba(255, 255, 255, 0.1);
+            --glow-blue: rgba(59, 130, 246, 0.15);
+            --glow-cyan: rgba(6, 182, 212, 0.15);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Subtle animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            animation: gradientMove 15s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes gradientMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -20px) scale(1.1); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        /* Header - Professional and clean */
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        header.scrolled .logo {
+            font-size: 1rem;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-text {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .hero-badge:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        .hero-badge::before {
+            content: '●';
+            color: var(--accent-cyan);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--text-primary) 50%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle .hero-highlight {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px var(--glow-blue);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--glow-blue);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateY(-2px);
+        }
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.4s forwards;
+        }
+        .code-window {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .window-header {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+        }
+        .window-dot:nth-child(1) { background: #ef4444; }
+        .window-dot:nth-child(2) { background: #f59e0b; }
+        .window-dot:nth-child(3) { background: #10b981; }
+        .code-content {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        .code-line {
+            opacity: 0;
+            animation: typeIn 0.5s ease-out forwards;
+        }
+        .code-line:nth-child(1) { animation-delay: 0.8s; }
+        .code-line:nth-child(2) { animation-delay: 1s; }
+        .code-line:nth-child(3) { animation-delay: 1.2s; }
+        .code-line:nth-child(4) { animation-delay: 1.4s; }
+        .code-line:nth-child(5) { animation-delay: 1.6s; }
+        .code-line:nth-child(6) { animation-delay: 1.8s; }
+        .code-line:nth-child(7) { animation-delay: 2s; }
+        .code-line:nth-child(8) { animation-delay: 2.2s; }
+        @keyframes typeIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .keyword { color: var(--accent-purple); }
+        .function { color: var(--accent-cyan); }
+        .string { color: #10b981; }
+        .comment { color: #6b7280; font-style: italic; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-cyan);
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 40px var(--glow-blue);
+        }
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        /* CAROUSEL STYLES */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 2rem;
+        }
+        .carousel-item {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            min-width: 300px;
+        }
+        /* Brand Card - For Carousel */
+        .brand-card-carousel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-card-carousel:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--glow-blue);
+        }
+        .brand-logo-container-carousel {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 50%, #e6e6e6 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+        .brand-logo-container-carousel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+        }
+        .brand-logo-img-carousel {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            filter: brightness(0) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+        .brand-card-carousel:hover .brand-logo-img-carousel {
+            transform: scale(1.05);
+        }
+        .brand-links-grid-carousel {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: auto;
+        }
+        .brand-link-card-carousel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .brand-link-card-carousel:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px var(--glow-blue);
+        }
+        .brand-link-icon-carousel {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .brand-link-card-carousel:hover .brand-link-icon-carousel {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+        .brand-link-label-carousel {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+        /* Project Card - For Carousel */
+        .project-card-carousel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card-carousel:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px var(--glow-blue);
+        }
+        .project-content-carousel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+        .project-header-carousel {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .project-title-carousel {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .project-category-carousel {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .project-description-carousel {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        .project-links-carousel {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+        .project-link-carousel {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+        .project-link-carousel:hover {
+            color: var(--accent-cyan);
+        }
+        .project-visual-carousel {
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .project-icon-carousel {
+            font-size: 3rem;
+            opacity: 0.2;
+            transition: all 0.4s ease;
+        }
+        .project-card-carousel:hover .project-icon-carousel {
+            opacity: 0.4;
+            transform: scale(1.1) rotate(5deg);
+        }
+        /* Carousel Navigation */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .carousel-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+        }
+        .carousel-btn:hover:not(:disabled) {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+            border-color: var(--accent-blue);
+        }
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carousel-dot.active {
+            background: var(--accent-blue);
+            transform: scale(1.2);
+        }
+        /* Skills Carousel Container */
+        .skills-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        .skills-carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 2rem;
+        }
+        .skills-carousel-item {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            min-width: 280px;
+        }
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .skill-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--glow-blue);
+        }
+        .skill-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .skill-icon {
+            font-size: 1.5rem;
+        }
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .skill-name {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .skill-level {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+        .skill-bar {
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            width: 0;
+            box-shadow: 0 0 10px var(--glow-cyan);
+        }
+        /* Contact Section - Row Layout */
+        .contact-container {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--glow-blue);
+        }
+        .contact-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+        .contact-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .contact-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in-up.animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .fade-in-up.animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* ============================
+           RESPONSIVE DESIGN
+           ============================ */
+        /* Large tablets and small laptops (968px and down) */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-visual {
+                height: 400px;
+            }
+            .carousel-item,
+            .skills-carousel-item {
+                flex: 0 0 calc(50% - 1rem);
+                min-width: calc(50% - 1rem);
+            }
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Medium devices (tablets, 768px and down) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            /* Navigation */
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0.5rem 0;
+            }
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.25rem 0.5rem;
+            }
+            /* COMPACT HEADER ON SCROLL */
+            header.scrolled {
+                padding: 0.3rem 0 !important;
+                min-height: 50px !important;
+            }
+            
+            header.scrolled nav {
+                gap: 0.5rem !important;
+                padding: 0.3rem 0 !important;
+            }
+            
+            header.scrolled .logo {
+                font-size: 0.9rem !important;
+                transform: scale(0.9) !important;
+            }
+            
+            header.scrolled .nav-links a {
+                font-size: 0.75rem !important;
+                padding: 0.2rem 0.3rem !important;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding: 2rem 0;
+                min-height: auto;
+            }
+            .hero-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            .hero-subtitle {
+                font-size: clamp(1.6rem, 3.5vw, 2.2rem) !important;
+                margin-bottom: 1.5rem !important;
+            }
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .hero-visual {
+                height: 350px;
+            }
+            /* Sections */
+            section {
+                padding: 3rem 0;
+            }
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+            .section-title {
+                font-size: clamp(1.75rem, 4vw, 2.5rem);
+            }
+            .section-description {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            /* Stats Grid */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2.5rem;
+            }
+            .stat-card {
+                padding: 1.5rem;
+            }
+            .stat-icon {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            /* Carousel */
+            .carousel-item,
+            .skills-carousel-item {
+                flex: 0 0 100%;
+                min-width: 100%;
+            }
+            /* Contact */
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .contact-card {
+                padding: 1.5rem 1rem;
+            }
+            /* Footer */
+            footer {
+                padding: 2rem 0;
+            }
+            footer p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+        }
+        /* Small devices (phones, 480px and down) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            /* Navigation */
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            /* Hero */
+            .hero {
+                padding: 1.5rem 0;
+            }
+            .hero-title {
+                font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+            }
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.7rem;
+                margin-bottom: 1rem;
+            }
+            .hero-subtitle {
+                font-size: clamp(1.4rem, 3vw, 2rem) !important;
+                margin-bottom: 1.2rem !important;
+            }
+            .hero-description {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            .hero-visual {
+                height: 300px;
+            }
+            .code-content {
+                padding: 1rem;
+                font-size: 0.75rem;
+            }
+            /* EVEN MORE COMPACT ON SMALL PHONES */
+            header.scrolled {
+                padding: 0.2rem 0 !important;
+                min-height: 45px !important;
+            }
+            
+            header.scrolled .logo {
+                font-size: 0.85rem !important;
+            }
+            
+            header.scrolled .nav-links a {
+                font-size: 0.7rem !important;
+                padding: 0.15rem 0.25rem !important;
+            }
+            /* Stats */
+            .stat-card {
+                padding: 1.25rem;
+            }
+            .stat-icon {
+                font-size: 1.75rem;
+            }
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            /* Code Window on very small screens */
+            .code-window {
+                transform: scale(0.95);
+                transform-origin: center;
+            }
+        }
+        /* Very small devices (320px and down) */
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem !important;
+            }
+            .hero-description {
+                font-size: 0.85rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
+            .code-content {
+                font-size: 0.7rem;
+                line-height: 1.6;
+            }
+            .hero-visual {
+                height: 250px;
+            }
+        }
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                min-height: -webkit-fill-available;
+            }
+        }
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Increase tap target sizes */
+            .nav-links a {
+                padding: 0.5rem;
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn {
+                min-height: 48px;
+            }
+            /* Reduce hover effects on touch devices */
+            .stat-card:hover,
+            .skill-card:hover,
+            .contact-card:hover {
+                transform: translateY(0);
+            }
+            .stat-card:active,
+            .skill-card:active,
+            .contact-card:active {
+                transform: translateY(-2px);
+                border-color: var(--accent-blue);
+            }
+            /* Keep essential hover effects */
+            .nav-links a:active::after,
+            .btn-primary:active,
+            .btn-secondary:active {
+                transform: translateY(-1px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Portfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#social-media">Social Media</a></li>
+                    <li><a href="#projects">AI Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        Open for Opportunities
+                    </div>
+                    <h1 class="hero-title">Ali Shah</h1>
+                    <p class="hero-subtitle">AI Engineer & <span class="hero-highlight">Social Media Strategist</span></p>
+                    <p class="hero-description">
+                        I'm an AI enthusiast and social media manager who loves blending technology 
+                        with creativity. From building AI projects to scaling social media pages, 
+                        I focus on smart, result-oriented growth.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            View My Work
+                            <span>→</span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                            <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">ai_model.py</span>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div>
+                            <div class="code-line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</div>
+                            <div class="code-line"><br></div>
+                            <div class="code-line"><span class="comment"># Building the future, one layer at a time</span></div>
+                            <div class="code-line"><span class="keyword">model</span> = keras.Sequential([</div>
+                            <div class="code-line">    layers.<span class="function">Dense</span>(<span class="string">128</span>, activation=<span class="string">'relu'</span>),</div>
+                            <div class="code-line">    layers.<span class="function">Dropout</span>(<span class="string">0.2</span>),</div>
+                            <div class="code-line">    layers.<span class="function">Dense</span>(<span class="string">10</span>, activation=<span class="string">'softmax'</span>)</div>
+                            <div class="code-line">])</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Stats Section -->
+    <section id="about">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in-up">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">BS AI Student</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">AI Projects Completed</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-icon">💻</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Technologies Mastered</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Dedication to Learning</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Social Media Section -->
+    <section id="social-media" style="background: var(--bg-secondary); padding: 6rem 0;">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-label">Digital Marketing</div>
+                <h2 class="section-title">Social Media Manager</h2>
+                <p class="section-description">
+                    Building brands and driving growth through strategic social media marketing and content creation
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card fade-in-up" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Total Followers Grown</div>
+                </div>
+                <div class="stat-card fade-in-up" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Social Media Reach</div>
+                </div>
+                <div class="stat-card fade-in-up" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(59, 130, 246, 0.05));">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">In Personal Sales (PKR)</div>
+                </div>
+            </div>
+            <div style="margin-top: 4rem;">
+                <h3 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: var(--text-primary);">Brands I've Worked With</h3>
+                
+                <!-- Brands Carousel -->
+                <div class="carousel-container" id="brandsCarousel">
+                    <div class="carousel-wrapper" id="brandsWrapper">
+                        <!-- Brand 1: High On Fuel -->
+                        <div class="carousel-item">
+                            <div class="brand-card-carousel fade-in-up">
+                                <div class="brand-logo-container-carousel">
+                                    <img src="https://highonfuel.com/cdn/shop/files/High-on-fuel-logo-simple-white-with-cursive.png?v=1759310280&width=500" 
+                                         alt="High On Fuel Logo" 
+                                         class="brand-logo-img-carousel">
+                                </div>
+                                <div class="brand-links-grid-carousel">
+                                    <a href="https://highonfuel.com/" class="brand-link-card-carousel" target="_blank">
+                                        <div class="brand-link-icon-carousel">🌐</div>
+                                        <div class="brand-link-label-carousel">Website</div>
+                                    </a>
+                                    
+                                    <a href="https://www.instagram.com/highonfuelco/" class="brand-link-card-carousel" target="_blank">
+                                        <div class="brand-link-icon-carousel">📱</div>
+                                        <div class="brand-link-label-carousel">Instagram</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Brand 2: French Falafel -->
+                        <div class="carousel-item">
+                            <div class="brand-card-carousel fade-in-up">
+                                <div class="brand-logo-container-carousel">
+                                    <img src="https://image2url.com/r2/default/images/1770326185916-bd8de20f-1aa8-4ead-9c4e-54f059f48047.png" 
+                                         alt="French Falafel Logo" 
+                                         class="brand-logo-img-carousel"
+                                         style="width: 80%; height: auto; object-fit: contain; padding: 0.1rem; filter: none;">
+                                </div>
+                                <div class="brand-links-grid-carousel">
+                                    <a href="https://frenchfalafel.com/" class="brand-link-card-carousel" target="_blank">
+                                        <div class="brand-link-icon-carousel">🌐</div>
+                                        <div class="brand-link-label-carousel">Website</div>
+                                    </a>
+                                    
+                                    <a href="https://www.instagram.com/frfalafel" class="brand-link-card-carousel" target="_blank">
+                                        <div class="brand-link-icon-carousel">📱</div>
+                                        <div class="brand-link-label-carousel">Instagram</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+              
+                        <!-- Brand 3: Dubai Luxury Autos - NEW BRAND -->
+                        <div class="carousel-item">
+                            <div class="brand-card-carousel fade-in-up">
+                                <div class="brand-logo-container-carousel">
+                                    <img src="https://image2url.com/r2/default/images/1770376326956-9d0f750a-eb9c-4288-9a4f-3264e83a742b.png" 
+                                         alt="Dubai Luxury Autos Logo" 
+                                         class="brand-logo-img-carousel"
+                                         style="width: 90%; height: auto; object-fit: contain; padding: 0.1rem; filter: none;">
+                                </div>
+                                <div class="brand-links-grid-carousel" style="
+                                    display: grid;
+                                    grid-template-columns: repeat(5, 1fr);
+                                    gap: 1rem;
+                                ">
+                                    <a href="https://www.facebook.com/dubailuxuryautos" class="brand-link-card-carousel" target="_blank" style="
+                                        grid-column: 2 / span 3;
+                                        width: 100%;
+                                        padding: 1rem 0.5rem;
+                                    ">
+                                        <div class="brand-link-icon-carousel">📘</div>
+                                        <div class="brand-link-label-carousel">Facebook</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Carousel Navigation -->
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="brandsPrevBtn" aria-label="Previous">
+                            ←
+                        </button>
+                        
+                        <div class="carousel-dots" id="brandsDots">
+                            <!-- Dots will be generated by JavaScript -->
+                        </div>
+                        
+                        <button class="carousel-btn" id="brandsNextBtn" aria-label="Next">
+                            →
+                        </button>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary); font-size: 0.95rem;">
+                    Successfully managed social media presence, content strategy, and community engagement for multiple brands.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-label">Technical Portfolio</div>
+                <h2 class="section-title">AI & Programming Projects</h2>
+                <p class="section-description">
+                    Innovative AI solutions and software development projects leveraging various technologies
+                </p>
+            </div>
+            <!-- Projects Carousel -->
+            <div class="carousel-container" id="projectsCarousel">
+                <div class="carousel-wrapper" id="projectsWrapper">
+                    <!-- Project 1: Heart Disease Prediction -->
+                    <div class="carousel-item">
+                        <div class="project-card-carousel fade-in-up">
+                            <div class="project-content-carousel">
+                                <div class="project-header-carousel">
+                                    <div>
+                                        <h3 class="project-title-carousel">Heart Disease Prediction Using Machine Learning</h3>
+                                        <span class="project-category-carousel">Machine Learning</span>
+                                    </div>
+                                </div>
+                                <p class="project-description-carousel">
+                                    Built a machine learning-based assistant that estimates the likelihood of heart disease from patient data. 
+                                    Provides lifestyle-oriented recommendations based on predicted risk. Utilizes various ML algorithms 
+                                    for accurate prediction and risk assessment.
+                                </p>
+                                <div class="project-links-carousel">
+                                    <a href="https://github.com/4LIshah/Heart-Disease-Prediction-Using-Machine-Learning" class="project-link-carousel" target="_blank">
+                                        <span>→</span> View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-visual-carousel">
+                                <div class="project-icon-carousel">❤️</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2: Car Rental System -->
+                    <div class="carousel-item">
+                        <div class="project-card-carousel fade-in-up">
+                            <div class="project-content-carousel">
+                                <div class="project-header-carousel">
+                                    <div>
+                                        <h3 class="project-title-carousel">Car Rental Website System</h3>
+                                        <span class="project-category-carousel">Web Development</span>
+                                    </div>
+                                </div>
+                                <p class="project-description-carousel">
+                                    A comprehensive Car Rental System using PHP & MySQL with HTML, CSS, JS, and Vue.js. Features include 
+                                    online reservations, car availability checking, user authentication, and admin dashboard for managing 
+                                    reservations, cars, brands, and types (CRUD operations). Two-sided system with client and admin interfaces.
+                                </p>
+                                <div class="project-links-carousel">
+                                    <a href="https://github.com/4LIshah/Rent-a-car-DBMS-project" class="project-link-carousel" target="_blank">
+                                        <span>→</span> View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-visual-carousel">
+                                <div class="project-icon-carousel">🚗</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3: Parking Management System -->
+                    <div class="carousel-item">
+                        <div class="project-card-carousel fade-in-up">
+                            <div class="project-content-carousel">
+                                <div class="project-header-carousel">
+                                    <div>
+                                        <h3 class="project-title-carousel">Parking Management System</h3>
+                                        <span class="project-category-carousel">C++ Application</span>
+                                    </div>
+                                </div>
+                                <p class="project-description-carousel">
+                                    A C++ application designed to manage a multi-level parking lot efficiently. Uses advanced data structures 
+                                    like Binary Search Trees (BST) and vectors to allocate, reserve, and free parking spots dynamically. 
+                                    Tracks active vehicles, calculates fees, and maintains persistent data for seamless functionality.
+                                </p>
+                                <div class="project-links-carousel">
+                                    <a href="https://github.com/4LIshah/Multi-level-Parking-garage-system" class="project-link-carousel" target="_blank">
+                                        <span>→</span> View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-visual-carousel">
+                                <div class="project-icon-carousel">🅿️</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4: Voice Assistant -->
+                    <div class="carousel-item">
+                        <div class="project-card-carousel fade-in-up">
+                            <div class="project-content-carousel">
+                                <div class="project-header-carousel">
+                                    <div>
+                                        <h3 class="project-title-carousel">Voice Assistant</h3>
+                                        <span class="project-category-carousel">Python AI</span>
+                                    </div>
+                                </div>
+                                <p class="project-description-carousel">
+                                    A Python-based Voice Assistant with graphical user interface built using Tkinter. Integrates speech 
+                                    recognition, text-to-speech, and executes various commands including opening websites, applications, 
+                                    performing web searches, and system operations. Features natural language processing capabilities.
+                                </p>
+                                <div class="project-links-carousel">
+                                    <a href="https://github.com/4LIshah/Voice-Assistant" class="project-link-carousel" target="_blank">
+                                        <span>→</span> View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-visual-carousel">
+                                <div class="project-icon-carousel">🎤</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 5: Rock-Paper-Scissors Game -->
+                    <div class="carousel-item">
+                        <div class="project-card-carousel fade-in-up">
+                            <div class="project-content-carousel">
+                                <div class="project-header-carousel">
+                                    <div>
+                                        <h3 class="project-title-carousel">Rock-Paper-Scissors Game</h3>
+                                        <span class="project-category-carousel">C++ Game</span>
+                                    </div>
+                                </div>
+                                <p class="project-description-carousel">
+                                    A C++ implementation of the classic Rock-Paper-Scissors game with enhanced features. Includes 
+                                    interactive gameplay against computer, player data management with score tracking, file I/O for 
+                                    saving/loading scores, and visual ASCII art representation for game elements. Features score 
+                                    viewing system for all players and computer scores.
+                                </p>
+                                <div class="project-links-carousel">
+                                    <a href="https://github.com/4LIshah/Rock-Paper-Scissors-" class="project-link-carousel" target="_blank">
+                                        <span>→</span> View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-visual-carousel">
+                                <div class="project-icon-carousel">✂️</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="projectsPrevBtn" aria-label="Previous">
+                        ←
+                    </button>
+                    
+                    <div class="carousel-dots" id="projectsDots">
+                        <!-- Dots will be generated by JavaScript -->
+                    </div>
+                    
+                    <button class="carousel-btn" id="projectsNextBtn" aria-label="Next">
+                        →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-label">Expertise</div>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-description">
+                    Core competencies in AI, machine learning, and software development
+                </p>
+            </div>
+            
+            <!-- Skills Carousel -->
+            <div class="skills-carousel-container" id="skillsCarousel">
+                <div class="skills-carousel-wrapper" id="skillsWrapper">
+                    <!-- Skill Card 1 -->
+                    <div class="skills-carousel-item">
+                        <div class="skill-card fade-in-up">
+                            <h3>
+                                <span class="skill-icon">🤖</span>
+                                AI & Machine Learning
+                            </h3>
+                            <div class="skill-list">
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Python & Data Science</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="95"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">TensorFlow / Keras</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="90"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Scikit-learn</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="92"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Data Analysis</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 2 -->
+                    <div class="skills-carousel-item">
+                        <div class="skill-card fade-in-up">
+                            <h3>
+                                <span class="skill-icon">🌐</span>
+                                Web Development
+                            </h3>
+                            <div class="skill-list">
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">PHP & MySQL</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="85"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">HTML/CSS/JavaScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="90"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Vue.js</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="80"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Web APIs</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="82"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 3 -->
+                    <div class="skills-carousel-item">
+                        <div class="skill-card fade-in-up">
+                            <h3>
+                                <span class="skill-icon">💻</span>
+                                Programming Languages
+                            </h3>
+                            <div class="skill-list">
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Python</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="94"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">C++</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">JavaScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="85"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">SQL</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="78"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 4 -->
+                    <div class="skills-carousel-item">
+                        <div class="skill-card fade-in-up">
+                            <h3>
+                                <span class="skill-icon">⚙️</span>
+                                Development & Tools
+                            </h3>
+                            <div class="skill-list">
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Git & GitHub</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="90"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Data Structures</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Problem Solving</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="92"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div style="width: 100%;">
+                                        <div class="skill-name">Debugging</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="85"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="skillsPrevBtn" aria-label="Previous">
+                        ←
+                    </button>
+                    
+                    <div class="carousel-dots" id="skillsDots">
+                        <!-- Dots will be generated by JavaScript -->
+                    </div>
+                    
+                    <button class="carousel-btn" id="skillsNextBtn" aria-label="Next">
+                        →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-description">
+                    I'm always open to discussing new projects, opportunities, or collaborations 
+                    in AI, machine learning, and software development.
+                </p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-grid">
+                    <a href="mailto:ali.shah8003@gmail.com" class="contact-card fade-in-up">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-info">ali.shah8003@gmail.com</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ali-shah-ai-ml/" class="contact-card fade-in-up" target="_blank">
+                        <div class="contact-icon">🔗</div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-info">Ali Shah (AI/ML)</div>
+                    </a>
+                    <a href="https://github.com/4LIshah" class="contact-card fade-in-up" target="_blank">
+                        <div class="contact-icon">💻</div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-info">@4LIshah</div>
+                    </a>
+                    <a href="https://www.instagram.com/4li.03_/" class="contact-card fade-in-up" target="_blank">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-label">Instagram</div>
+                        <div class="contact-info">@4li.03_</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Ali Shah • BS Artificial Intelligence @ Bahria University Islamabad</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">
+                Connect with me: 
+                <a href="mailto:ali.shah8003@gmail.com" style="color: var(--accent-cyan); text-decoration: none; margin: 0 0.5rem;">Email</a> •
+                <a href="https://www.linkedin.com/in/ali-shah-ai-ml/" style="color: var(--accent-cyan); text-decoration: none; margin: 0 0.5rem;" target="_blank">LinkedIn</a> •
+                <a href="https://github.com/4LIshah" style="color: var(--accent-cyan); text-decoration: none; margin: 0 0.5rem;" target="_blank">GitHub</a> •
+                <a href="https://www.instagram.com/4li.03_/" style="color: var(--accent-cyan); text-decoration: none; margin: 0 0.5rem;" target="_blank">Instagram</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        // Target values for each stat card
+        const statTargets = {
+            0: { value: 3, suffix: 'rd Year' },
+            1: { value: 10, suffix: '+' },
+            2: { value: 8, suffix: '+' },
+            3: { value: 100, suffix: '%' },
+            4: { value: 200, suffix: 'K+' },
+            5: { value: 150, suffix: 'M+' },
+            6: { value: 1, suffix: 'M+' }
+        };
+        // Fast counter animation function
+        function animateCounter(element, index) {
+            const target = statTargets[index];
+            if (!target) return;
+            
+            const duration = 800;
+            const steps = 20;
+            const stepDuration = duration / steps;
+            let currentStep = 0;
+            
+            const animateStep = () => {
+                currentStep++;
+                const progress = currentStep / steps;
+                const currentValue = Math.floor(target.value * progress);
+                element.textContent = currentValue + target.suffix;
+                
+                if (progress < 1) {
+                    const scale = 1 + (0.1 * Math.sin(progress * Math.PI));
+                    element.style.transform = `scale(${scale})`;
+                    setTimeout(animateStep, stepDuration);
+                } else {
+                    element.textContent = target.value + target.suffix;
+                    element.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        element.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            };
+            
+            setTimeout(animateStep, 100);
+        }
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    if (entry.target.classList.contains('stat-card')) {
+                        const numberElement = entry.target.querySelector('.stat-number');
+                        const statCards = document.querySelectorAll('.stat-card');
+                        const index = Array.from(statCards).indexOf(entry.target);
+                        
+                        if (numberElement && !numberElement.classList.contains('animated')) {
+                            numberElement.classList.add('animated');
+                            animateCounter(numberElement, index);
+                        }
+                    }
+                    
+                    if (entry.target.classList.contains('skill-card')) {
+                        const progressBars = entry.target.querySelectorAll('.skill-progress');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, { 
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const progressBars = card.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = width + '%';
+                    });
+                }
+            });
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const numberElement = card.querySelector('.stat-number');
+                    if (numberElement && !numberElement.classList.contains('animated')) {
+                        numberElement.classList.add('animated');
+                        animateCounter(numberElement, index);
+                    }
+                }
+            });
+        });
+        setTimeout(() => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach((number, index) => {
+                if (!number.classList.contains('animated')) {
+                    const rect = number.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        number.classList.add('animated');
+                        animateCounter(number, index);
+                    }
+                }
+            });
+        }, 300);
+        
+        // ============================
+        // CAROUSEL CLASS WITH TOUCH SUPPORT
+        // ============================
+        
+        class Carousel {
+            constructor(containerId, wrapperId, prevBtnId, nextBtnId, dotsId) {
+                this.container = document.getElementById(containerId);
+                this.wrapper = document.getElementById(wrapperId);
+                this.prevBtn = document.getElementById(prevBtnId);
+                this.nextBtn = document.getElementById(nextBtnId);
+                this.dotsContainer = document.getElementById(dotsId);
+                
+                this.items = Array.from(this.wrapper.children);
+                this.currentIndex = 0;
+                this.totalItems = this.items.length;
+                this.itemsPerView = this.calculateItemsPerView();
+                
+                // Touch support
+                this.touchStartX = 0;
+                this.touchEndX = 0;
+                this.isDragging = false;
+                
+                this.init();
+                this.setupEventListeners();
+                this.setupTouchListeners();
+                this.updateCarousel();
+            }
+            
+            calculateItemsPerView() {
+                const width = window.innerWidth;
+                if (width <= 768) return 1;
+                if (width <= 968) return 2;
+                return 3;
+            }
+            
+            init() {
+                // Create dots based on total slides needed
+                const totalSlides = Math.ceil(this.totalItems / this.itemsPerView);
+                this.dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'carousel-dot';
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.dotsContainer.appendChild(dot);
+                }
+                
+                this.updateButtons();
+            }
+            
+            setupEventListeners() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                window.addEventListener('resize', () => {
+                    const oldItemsPerView = this.itemsPerView;
+                    this.itemsPerView = this.calculateItemsPerView();
+                    
+                    if (oldItemsPerView !== this.itemsPerView) {
+                        // Recalculate current position
+                        this.currentIndex = Math.min(this.currentIndex, this.totalItems - this.itemsPerView);
+                        if (this.currentIndex < 0) this.currentIndex = 0;
+                        this.init();
+                        this.updateCarousel();
+                    }
+                });
+            }
+            
+            setupTouchListeners() {
+                this.wrapper.addEventListener('touchstart', (e) => {
+                    this.touchStartX = e.changedTouches[0].screenX;
+                    this.isDragging = true;
+                }, { passive: true });
+                
+                this.wrapper.addEventListener('touchmove', (e) => {
+                    if (!this.isDragging) return;
+                    this.touchEndX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                this.wrapper.addEventListener('touchend', () => {
+                    if (!this.isDragging) return;
+                    this.isDragging = false;
+                    this.handleSwipe();
+                });
+                
+                // Mouse drag support for desktop
+                let mouseStartX = 0;
+                let isMouseDown = false;
+                
+                this.wrapper.addEventListener('mousedown', (e) => {
+                    mouseStartX = e.screenX;
+                    isMouseDown = true;
+                });
+                
+                this.wrapper.addEventListener('mousemove', (e) => {
+                    if (!isMouseDown) return;
+                    this.touchEndX = e.screenX;
+                });
+                
+                this.wrapper.addEventListener('mouseup', () => {
+                    if (!isMouseDown) return;
+                    isMouseDown = false;
+                    this.touchStartX = mouseStartX;
+                    this.handleSwipe();
+                });
+                
+                this.wrapper.addEventListener('mouseleave', () => {
+                    isMouseDown = false;
+                });
+            }
+            
+            handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = this.touchStartX - this.touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swiped left - go next
+                        this.next();
+                    } else {
+                        // Swiped right - go prev
+                        this.prev();
+                    }
+                }
+                
+                this.touchStartX = 0;
+                this.touchEndX = 0;
+            }
+            
+            updateCarousel() {
+                // Calculate the proper transform value
+                const itemWidth = 100 / this.itemsPerView;
+                const translateX = -(this.currentIndex * itemWidth);
+                
+                this.wrapper.style.transform = `translateX(${translateX}%)`;
+                
+                // Update dots
+                const currentSlide = Math.floor(this.currentIndex / this.itemsPerView);
+                const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                this.updateButtons();
+            }
+            
+            updateButtons() {
+                this.prevBtn.disabled = this.currentIndex === 0;
+                this.nextBtn.disabled = this.currentIndex >= this.totalItems - this.itemsPerView;
+            }
+            
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex = Math.max(0, this.currentIndex - this.itemsPerView);
+                    this.updateCarousel();
+                }
+            }
+            
+            next() {
+                const maxIndex = this.totalItems - this.itemsPerView;
+                if (this.currentIndex < maxIndex) {
+                    this.currentIndex = Math.min(maxIndex, this.currentIndex + this.itemsPerView);
+                    this.updateCarousel();
+                }
+            }
+            
+            goToSlide(slideIndex) {
+                this.currentIndex = slideIndex * this.itemsPerView;
+                this.currentIndex = Math.min(this.currentIndex, this.totalItems - this.itemsPerView);
+                this.updateCarousel();
+            }
+        }
+        
+        // Initialize all carousels when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Brands Carousel
+            const brandsCarousel = new Carousel(
+                'brandsCarousel',
+                'brandsWrapper',
+                'brandsPrevBtn',
+                'brandsNextBtn',
+                'brandsDots'
+            );
+            
+            // Projects Carousel
+            const projectsCarousel = new Carousel(
+                'projectsCarousel',
+                'projectsWrapper',
+                'projectsPrevBtn',
+                'projectsNextBtn',
+                'projectsDots'
+            );
+            
+            // Skills Carousel
+            const skillsCarousel = new Carousel(
+                'skillsCarousel',
+                'skillsWrapper',
+                'skillsPrevBtn',
+                'skillsNextBtn',
+                'skillsDots'
+            );
+        });
+    </script>
+</body>
+</html>
